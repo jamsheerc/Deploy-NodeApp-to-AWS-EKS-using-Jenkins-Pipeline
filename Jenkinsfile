@@ -21,7 +21,7 @@ pipeline {
      stage('Build Node JS Docker Image') {
             steps {
                 script {
-                  sh 'docker build -t devopshint/node-app-1.0 .'
+                  sh 'docker build -t jamsheerc/node-app-1.0 .'
                 }
             }
         }
@@ -31,9 +31,9 @@ pipeline {
             steps {
                 script {
                  withCredentials([string(credentialsId: 'dockerlogin', variable: 'dockerlogin')]) {
-                    sh 'docker login -u devopshint -p ${dockerlogin}'
+                    sh 'docker login -u jamsheerc -p ${dockerlogin}'
             }
-            sh 'docker push devopshint/node-app-1.0'
+            sh 'docker push jamsheerc/node-app-1.0'
         }
             }   
         }
@@ -41,7 +41,7 @@ pipeline {
      stage('Deploying Node App to Kubernetes') {
       steps {
         script {
-          sh ('aws eks update-kubeconfig --name sample --region ap-south-1')
+          sh ('aws eks update-kubeconfig --name demo-ekscluster --region us-east-1')
           sh "kubectl get ns"
           sh "kubectl apply -f nodejsapp.yaml"
         }
