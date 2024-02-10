@@ -42,7 +42,7 @@ pipeline {
       steps {
         script {
           sh ('aws eks update-kubeconfig --name demo-ekscluster1 --region us-east-1')
-          sh "kubectl apply -f node.yml"
+          sh "kubectl apply -f nodejsapp.yaml"
         }
       }
     }
