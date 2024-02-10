@@ -42,7 +42,7 @@ pipeline {
       steps {
         script {
           sh ('aws eks update-kubeconfig --name demo-ekscluster1 --region us-east-1')
-          sh "kubectl apply --validate=false -f nodejsapp.yaml"
+          sh "kubectl apply --validate=false -f /var/lib/jenkins/workspace/new/nodejsapp.yaml"
         }
       }
     }
